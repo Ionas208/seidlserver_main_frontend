@@ -1,1 +1,2 @@
-seidlserver_main_frontend
+# Seidlserver Frontend
+The frontend will display a beautiful GUI.
