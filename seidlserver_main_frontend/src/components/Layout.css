@@ -1,0 +1,24 @@
+:root {
+    --bg-color: #0d002c;
+    --hover-color: #0096ff;
+}
+
+.container {
+    height: 100vh;
+}
+
+.actual-content-container {
+    display: flex;
+}
+
+.actual-content {
+    height: 100vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.content-style {
+    margin-left: 5%;
+    margin-right: 5%;
+}

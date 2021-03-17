@@ -1,0 +1,33 @@
+.sidebar {
+    background-color: #0d002c;
+    color: white;
+    margin: 0;
+    width: 14rem;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidbar-item-container {
+    margin: auto;
+    margin-top: 17vh;
+    list-style: none;
+}
+
+
+.sidebar-item {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 6vh;
+    font-size: 1.5rem;
+}
+
+.sidebar-item:hover {
+    color: var(--hover-color);
+}
+
+.selected {
+    font-weight: bold;
+    color: var(--hover-color);
+    text-decoration: underline;
+}
