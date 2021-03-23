@@ -24,6 +24,7 @@
 
 .sidebar-item:hover {
     color: var(--hover-color);
+    cursor: pointer;
 }
 
 .selected {
