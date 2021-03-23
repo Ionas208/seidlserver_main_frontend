@@ -16,7 +16,3 @@
     font-size: 2em;
     width: fit-content;
 }
-
-.servername:hover {
-    color: var(--hover-color);
-}

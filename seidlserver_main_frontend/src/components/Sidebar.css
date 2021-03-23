@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #0d002c;
+    background-color: var(--bg-color);
     color: white;
     margin: 0;
     width: 14rem;

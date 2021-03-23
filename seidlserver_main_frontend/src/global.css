@@ -1,3 +1,8 @@
+:root {
+  --bg-color: #0d002c;
+  --hover-color: #0096ff;
+}
+
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
@@ -7,3 +12,29 @@
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
   }
+
+.bt-standard {
+  color: white;
+  background-color: var(--bg-color);
+  width: 5rem;
+  border: none;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.bt-red {
+  background-color: red;
+}
+
+.bt-green {
+  background-color: #00ff00;
+}
+
+.bt-standard:focus {
+  outline: none;
+}
+
+.align-right {
+  margin-left: auto; 
+  margin-right: 0;
+}

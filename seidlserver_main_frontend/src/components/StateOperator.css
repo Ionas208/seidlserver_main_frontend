@@ -1,0 +1,11 @@
+.statusContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.icon-status {
+    color: #00ff00;
+    margin-left: .5rem;
+    align-items: center;
+}
