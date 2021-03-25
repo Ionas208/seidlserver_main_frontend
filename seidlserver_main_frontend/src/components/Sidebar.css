@@ -2,7 +2,7 @@
     background-color: var(--bg-color);
     color: white;
     margin: 0;
-    width: 14rem;
+    width: 17rem;
     height: 100vh;
     overflow: hidden;
 }
@@ -15,11 +15,22 @@
 
 
 .sidebar-item {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    margin-bottom: 6vh;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-item:hover{
+    background-color: var(--bg-color-light);
+}
+
+.sidebar-text {
+    text-align: center;
+    margin-right: auto;
+    margin-left: 5%;
 }
 
 .sidebar-item:hover {
@@ -29,6 +40,5 @@
 
 .selected {
     font-weight: bold;
-    color: var(--hover-color);
-    text-decoration: underline;
+    background-color: #353535;
 }

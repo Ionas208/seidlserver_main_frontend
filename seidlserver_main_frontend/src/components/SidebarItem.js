@@ -1,9 +1,9 @@
-import './Sidebar.css';
+import './SidebarItem.css';
 import '../global.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faChartPie, faServer, faColumns } from "@fortawesome/free-solid-svg-icons";
 
-function Sidebar() {
+function SidebarItem(props) {
   return (
     <nav className="sidebar noselect">
         <div className="sidbar-item-container">

@@ -1,6 +1,7 @@
 :root {
-  --bg-color: #0d002c;
-  --hover-color: #0096ff;
+  --bg-color: #222222;
+  --bg-color-light: #303030;
+  --hover-color: white;
 }
 
 .noselect {
@@ -22,6 +23,15 @@
   cursor: pointer;
 }
 
+.bt-standard:focus {
+  outline: none;
+}
+
+.align-right {
+  margin-left: auto; 
+  margin-right: 0;
+}
+
 .bt-red {
   background-color: red;
 }
@@ -30,11 +40,15 @@
   background-color: #00ff00;
 }
 
-.bt-standard:focus {
-  outline: none;
+
+.status-down {
+  color: red;
 }
 
-.align-right {
-  margin-left: auto; 
-  margin-right: 0;
+.status-up {
+  color: #00ff00;
+}
+
+.status-no-connection {
+  color: gray;
 }
