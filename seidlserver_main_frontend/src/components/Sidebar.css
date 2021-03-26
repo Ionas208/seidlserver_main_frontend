@@ -3,6 +3,7 @@
     color: white;
     margin: 0;
     width: 17rem;
+    min-width: fit-content;
     height: 100vh;
     overflow: hidden;
 }
@@ -41,4 +42,9 @@
 .selected {
     font-weight: bold;
     background-color: #353535;
+}
+
+.status-status-container {
+    display: flex;
+    align-items: center;
 }

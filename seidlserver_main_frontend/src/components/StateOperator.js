@@ -6,13 +6,13 @@ import { faSyncAlt, faCircle, faPowerOff } from "@fortawesome/free-solid-svg-ico
 import React from 'react';
 
 const api = axios.create({
-    baseURL: 'http://10.151.66.9:8080/'
+    baseURL: 'http://10.0.0.20:8080/'
 });
 
 class StateOperator extends React.Component {
 
     state = {
-        upState: 'connecting...'
+        upState: ''
     }
 
     constructor(props) {
@@ -25,7 +25,7 @@ class StateOperator extends React.Component {
             console.log(res.data.state)
             this.setState({upState: res.data.state});
         }).catch((err) => {
-            this.setState({upState: 'NO CONNECTION'});
+            this.setState({upState: 'CONNECTION FAILED'});
         })
     }
 
@@ -35,6 +35,8 @@ class StateOperator extends React.Component {
                 console.log('ifPower')
                 console.log(res.data)
                 this.setState({upState: res.data.state})
+            }).catch(err => {
+                console.log(err)
             })
         }
         else {
@@ -42,6 +44,20 @@ class StateOperator extends React.Component {
                 console.log('elsePower')
                 console.log(res.data)
                 this.setState({upState: res.data.state})
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+    }
+
+    restart() {
+        if(this.state.upState === 'UP') {
+            this.setState({upState: ''});
+            api.post('/restart').then(res => {
+                console.log(res.data)
+                this.setState({upState: res.data.state})
+            }).catch(err => {
+                this.setState({upState: 'CONNECTION FAILED'})
             })
         }
     }
@@ -50,17 +66,17 @@ class StateOperator extends React.Component {
         return (
             <>
                 <div className="statusContainer">
-                    <div>
-                        <h1>Status: {this.state.upState}</h1>
+                    <div className="status-status-container">
+                    <h1>Status:{'\u00A0'}</h1><div className={`${this.state.upState === '' ? "loader" : ""}`}></div><h1>{this.state.upState}</h1>
                     </div>
                     <div className="icon-status">
-                        <FontAwesomeIcon icon={faCircle} className={`icon-status ${this.state.upState === 'DOWN' ? "status-down" : this.state.upState === 'UP' ? "status-up" : "status-no-connection"}`}/>
+                        <FontAwesomeIcon icon={faCircle} className={`icon-status ${this.state.upState === 'DOWN' ? "status-down" : this.state.upState === 'UP' ? "status-up" : this.state.upState === '' ? "hidden" : "status-no-connection"}`}/>
                     </div>
                     <div className="align-right">
-                        <button className="bt-standard" onClick={() => this.refreshState()}>
+                        <button className={`bt-standard ${this.state.upState === 'UP' || this.state.upState === '' ? "" : "bt-disabled"}`} onClick={() => this.restart()}>
                             <FontAwesomeIcon icon={faSyncAlt} />
                         </button>
-                        <button className={`bt-standard ${this.state.upState === 'DOWN' ? "bt-red" : this.state.upState === 'UP' ? "bt-green" : ""}`} onClick={() => this.power()}>
+                        <button className={`bt-standard ${this.state.upState === 'DOWN' ? "bt-red" : this.state.upState === 'UP' || this.state.upState === '' ? "bt-green" : "bt-disabled"}`} onClick={() => this.power()}>
                             <FontAwesomeIcon icon={faPowerOff} />
                         </button>
                     </div>

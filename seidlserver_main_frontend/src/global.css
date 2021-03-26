@@ -1,7 +1,8 @@
 :root {
   --bg-color: #222222;
   --bg-color-light: #303030;
-  --hover-color: white;
+  --disabled-bg: #707070;
+  --disabled-text: #909090;
 }
 
 .noselect {
@@ -40,6 +41,11 @@
   background-color: #00ff00;
 }
 
+.bt-disabled {
+  background-color: var(--disabled-bg);
+  color: var(--disabled-text);
+  cursor: not-allowed;
+}
 
 .status-down {
   color: red;
@@ -51,4 +57,22 @@
 
 .status-no-connection {
   color: gray;
+}
+
+.loader {
+  border: .3rem solid #f3f3f3;
+  border-radius: 50%;
+  border-top: .3rem solid var(--bg-color-light);
+  height: 1rem;
+  width: 1rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none; 
 }
