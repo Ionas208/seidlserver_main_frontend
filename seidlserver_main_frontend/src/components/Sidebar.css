@@ -1,6 +1,6 @@
 .sidebar {
     background-color: var(--bg-color);
-    color: white;
+    color: white !important;
     margin: 0;
     width: 17rem;
     min-width: fit-content;
@@ -12,8 +12,8 @@
     margin: auto;
     margin-top: 17vh;
     list-style: none;
+    color: white !important;
 }
-
 
 .sidebar-item {
     padding-top: 10%;
@@ -22,6 +22,7 @@
     font-size: 1.5rem;
     display: flex;
     align-items: center;
+    color: white !important;
 }
 
 .sidebar-item:hover{
@@ -32,6 +33,7 @@
     text-align: center;
     margin-right: auto;
     margin-left: 5%;
+    color: white !important;
 }
 
 .sidebar-item:hover {
@@ -47,4 +49,14 @@
 .status-status-container {
     display: flex;
     align-items: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
 }
