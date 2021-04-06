@@ -1,37 +1,39 @@
-import './Sidebar.css';
+import '../styles/Sidebar.css';
 import '../global.css';
-import {SidebarData} from '../functionals/SidebarData';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog, faChartPie, faServer, faColumns, faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 
-function Sidebar() {
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import SidebarItem from './SidebarItem';
 
-  const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
+class Sidebar extends React.Component {
+  state = {
+    open: false
+  }
 
-  return (
-    <nav className="sidebar noselect">
-        <div className="sidbar-item-container">
-          {SidebarData.map((item, index) => {
-            return (
-              <div key={index}>
-                <Link to={item.path}>
-                  <div className={item.cName}>
-                    {item.icon}
-                    <span className="sidebar-text">{item.text}</span>
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
-{/*         <div className="sidebar-item selected"><FontAwesomeIcon icon={faColumns} /><span className="sidebar-text">Overview</span></div>
-            <div className="sidebar-item"><FontAwesomeIcon icon={faServer} /><span className="sidebar-text">Gameservers</span></div>
-            <div className="sidebar-item"><FontAwesomeIcon icon={faChartPie} /><span className="sidebar-text">Statistics</span></div>
-            <div className="sidebar-item"><FontAwesomeIcon icon={faCog} /><span className="sidebar-text">Settings</span></div>                  */}
+  constructor(props) {
+      super(props);
+  }
+
+  render() {
+    return (
+      <div className={`sidebar ${this.state.open === true ? 'sidebar-open' : 'sidebar-closed'}`}>
+        <button onClick={() => this.setState({open: !this.state.open})} className="bt-icon"><FontAwesomeIcon icon={this.state.open ? faTimes : faBars} /></button>
+        <div className="container-sidebar-items">
+          <SidebarItem icon={faColumns} text="Overview" open={this.state.open}/>
+          <SidebarItem icon={faServer} text="Overview" open={this.state.open}/>
+          <SidebarItem icon={faChartPie} text="Overview" open={this.state.open}/>
+          <SidebarItem icon={faCog} text="Overview" open={this.state.open}/>
+          <SidebarItem icon={faColumns} text="Overview" open={this.state.open}/>
         </div>
-    </nav>
-  );
+      </div>
+    );
+  }
+
 }
+
 
 export default Sidebar;

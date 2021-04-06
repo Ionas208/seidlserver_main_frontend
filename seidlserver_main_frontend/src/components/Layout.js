@@ -1,4 +1,4 @@
-import './Layout.css';
+import '../styles/Layout.css';
 import '../global.css';
 import Topbar from './Topbar';
 import Sidebar from './Sidebar';
@@ -11,18 +11,13 @@ const Layout = ({children}) => {
       <div className="container">
         
         <div className="actual-content-container">
-          <Router>
-            <Sidebar />
-            <Switch>
-              <Route path='/' />
-            </Switch>
-          </Router>
-            <div className="actual-content">
-                <Topbar servername="SEIDLSERVER" />
-                <div className="content-style">
-                    {children}
-                </div>
-            </div>
+            <Sidebar/>
+          <div className="actual-content">
+              <Topbar servername="TrUmMeRsErVeR" />
+              <div className="content-style">
+                  {children}
+              </div>
+          </div>
         </div>
       </div>
   );

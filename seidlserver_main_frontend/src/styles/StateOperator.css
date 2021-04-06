@@ -4,7 +4,13 @@
     width: 100%;
 }
 
+.status-status-container {
+    display: flex;
+    align-items: center;
+}
+
 .icon-status {
     margin-left: .5rem;
+    margin-right: .5rem;
     align-items: center;
 }

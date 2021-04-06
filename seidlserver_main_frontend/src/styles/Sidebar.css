@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
     background-color: var(--bg-color);
     color: white !important;
     margin: 0;
@@ -59,4 +59,45 @@ a {
 a:visited {
     color: white;
     text-decoration: none;
+} */
+
+.sidebar {
+  background-color: var(--bg-color);
+  color: white;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar-open {
+  width: 17rem;
+  transition: 400ms;
+}
+
+.sidebar-closed {
+  width: 4rem;
+  transition: 400ms;
+  overflow: hidden;
+}
+
+.bt-icon {
+  background: none;
+  color: white;
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.3rem;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  font-weight: lighter;
+}
+
+
+.bt-icon:focus {
+    outline: none;
+  }
+
+.container-sidebar-items {
+    margin-top: 1.5rem;
 }

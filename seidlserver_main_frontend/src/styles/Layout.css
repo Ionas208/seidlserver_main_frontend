@@ -8,7 +8,7 @@
 
 .actual-content {
     height: 100vh;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
     width: 100%;
 }
@@ -16,4 +16,8 @@
 .content-style {
     margin-left: 5%;
     margin-right: 5%;
+}
+
+.nav {
+    width: 100wh;
 }

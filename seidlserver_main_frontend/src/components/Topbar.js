@@ -1,4 +1,4 @@
-import './Topbar.css';
+import '../styles/Topbar.css';
 import '../global.css';
 
 function Topbar(props) {

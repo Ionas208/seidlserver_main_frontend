@@ -1,4 +1,4 @@
-import "./StateOperator.css";
+import "../styles/StateOperator.css";
 import "../global.css";
 import axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

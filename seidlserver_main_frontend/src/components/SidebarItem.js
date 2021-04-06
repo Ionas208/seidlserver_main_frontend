@@ -1,19 +1,21 @@
-import './SidebarItem.css';
-import '../global.css';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faChartPie, faServer, faColumns } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react'
+import '../styles/SidebarItem.css'
 
 function SidebarItem(props) {
-  return (
-    <nav className="sidebar noselect">
-        <div className="sidbar-item-container">
-            <div className="sidebar-item selected"><FontAwesomeIcon icon={faColumns} /><span className="sidebar-text">Overview</span></div>
-            <div className="sidebar-item"><FontAwesomeIcon icon={faServer} /><span className="sidebar-text">Gameservers</span></div>
-            <div className="sidebar-item"><FontAwesomeIcon icon={faChartPie} /><span className="sidebar-text">Statistics</span></div>
-            <div className="sidebar-item"><FontAwesomeIcon icon={faCog} /><span className="sidebar-text">Settings</span></div>
+
+    return (
+        <div className="sidebar-item">
+            <div className="sidebar-icon-container">
+                <button className="bt-icon">
+                    <FontAwesomeIcon icon={props.icon} className="icon"/>
+                </button>
+            </div>
+            <div className={`sidebar-text ${props.open ? "" : "text-hidden"}`}>
+                <span>{props.text}</span>
+            </div>
         </div>
-    </nav>
-  );
+    )
 }
 
-export default Sidebar;
+export default SidebarItem
