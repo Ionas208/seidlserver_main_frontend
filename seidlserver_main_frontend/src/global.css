@@ -1,5 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
-  --bg-color: #222222;
+  --bg-color: #222222;  
   --bg-color-light: #303030;
   --disabled-bg: #707070;
   --disabled-text: #909090;
