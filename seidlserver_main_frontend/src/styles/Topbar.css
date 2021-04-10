@@ -3,10 +3,12 @@
     width: 100%;
     background-color: var(--bg-color);
     color: #ffffff;
-    display: flex;
-    justify-content: space-evenly;
-    min-height: 50px;
-    height: 6rem;
+}
+
+.topbar h1 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
 }
 
 .servername {

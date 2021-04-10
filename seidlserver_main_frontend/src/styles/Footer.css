@@ -1,8 +1,9 @@
 .footer-container {
-    background-color: var(--bg-color);
-    height: 10vh;
+    background-color: #222;
+    height: 6rem;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .footer-content {

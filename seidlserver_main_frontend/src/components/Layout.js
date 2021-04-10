@@ -3,6 +3,7 @@ import '../global.css';
 import Topbar from './Topbar';
 import Sidebar from './Sidebar';
 import React from 'react';
+import Footer from './Footer';
 
 const Layout = ({ children }) => {
   return (
@@ -11,9 +12,10 @@ const Layout = ({ children }) => {
           <Sidebar/>
           <div className="actual-content">
               <Topbar servername="TrUmMeRsErVeR" />
-              <div className="content-style">
-                  {children}
+              <div className="content-style children">
+                    {children}
               </div>
+              <Footer />
           </div>
       </div>
   );
