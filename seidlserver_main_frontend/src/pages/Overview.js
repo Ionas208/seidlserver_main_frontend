@@ -1,8 +1,9 @@
 import React from 'react'
+import Layout from '../components/Layout'
 
 function Overview() {
     return (
-        <div>
+        <Layout servername="seidlserver">
         <h1>Overview</h1>
             <h1>Overview</h1>
             <h1>Overview</h1>
@@ -65,7 +66,7 @@ function Overview() {
             <h1>Overview</h1>
             <h1>Overview</h1>
             <h1>Overview</h1>
-        </div>
+        </Layout>
     )
 }
 

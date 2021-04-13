@@ -1,10 +1,11 @@
 import React from 'react'
+import Layout from '../components/Layout'
 
 function Statistics() {
     return (
-        <div>
+        <Layout servername="seidlserver">
             <h1>Statistics</h1>
-        </div>
+        </Layout>
     )
 }
 

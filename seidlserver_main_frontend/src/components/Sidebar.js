@@ -3,8 +3,6 @@ import '../global.css';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faChartPie, faServer, faColumns, faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
-
-import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import SidebarItem from './SidebarItem';
 
 
@@ -13,7 +11,7 @@ function Sidebar() {
   const [open, setOpen] = useState(false);
 
     return (
-      <div className={`sidebar hidden noselect ${open ? 'sidebar-open' : 'sidebar-closed'}`}>
+      <div className={`sidebar noselect ${open ? 'sidebar-open' : 'sidebar-closed'}`}>
         <button onClick={() => setOpen(!open)} className="bt-icon"><FontAwesomeIcon icon={open ? faTimes : faBars} /></button>
         <div className="container-sidebar-items">
           <SidebarItem icon={faColumns} text="Overview" open={open} link={'/overview'}/>
