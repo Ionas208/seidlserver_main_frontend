@@ -20,6 +20,7 @@ function App() {
         <Route path="/statistics" exact component={Statistics} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
+        <Route path="/" exact component={Overview} />
       </Switch>
     </Router>
   );
