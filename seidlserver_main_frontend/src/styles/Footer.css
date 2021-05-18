@@ -1,6 +1,5 @@
 .footer-container {
-    background-color: #222;
-    height: 5rem;
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,6 +15,7 @@
     color: white;
     align-items: center;
     justify-content: space-between;
+    height: 5rem;
 }
 
 .footer-item {

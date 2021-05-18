@@ -18,7 +18,7 @@
     margin-top: 5rem;
     background-color: white;
     width: 25rem;
-    height: 50vh;
+    height: 55vh;
     box-shadow: 0 0 10px #888888;
     border-radius: 3px;
 }
@@ -38,6 +38,19 @@
     font-size: 1.3rem;
 }
 
-.bt-login {
+.text-and-bt {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     margin: auto 0 10% auto;
+}
+
+.small-txt {
+    font-size: .9rem !important;
+}
+
+.small-txt a {
+    color: var(--bg-color) !important;
+    font-size: .9rem !important;
+    text-decoration: underline;
 }

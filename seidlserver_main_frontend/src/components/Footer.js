@@ -6,7 +6,7 @@ import { faCopyright } from '@fortawesome/free-regular-svg-icons'
 
 function Footer() {
     return (
-        <div className="footer-container">
+        <div className="footer-container noselect">
             <div className="footer-content">
                 <div className="github-plug">
                 <a href="https://github.com/elBoch" target="_blank" rel="noopener noreferrer" >
