@@ -4,8 +4,13 @@ import '../styles/Login.css'
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
+import validate from '../util/validate'
 
 function Login() {
+
+    if (!validate()) {
+        return <Redirect to="/overview" />
+    }
 
     const api = axios.create({
         baseURL: process.env.REACT_APP_BASE_URL

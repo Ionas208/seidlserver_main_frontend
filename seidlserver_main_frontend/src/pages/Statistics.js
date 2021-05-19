@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
+import validate from '../util/validate'
+import { Redirect } from 'react-router-dom';
 import axios from 'axios'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 
+function Statistics({open, setOpen}) {
+    if (validate()) {
+        return <Redirect to="/login" />
+    }
 function Statistics() {
 
     const [memData, setMemData] = useState(null)
@@ -37,7 +43,7 @@ function Statistics() {
     
     
     return (
-        <Layout servername="seidlserver">
+        <Layout servername="seidlserver" open={open} setOpen={setOpen}>
             <h1>Statistics</h1>
             <button onClick={getMemStats}>Get Mem Stats</button>
             <LineChart width={600} height={300} data={memData}>
