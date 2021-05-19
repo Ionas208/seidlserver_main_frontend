@@ -17,22 +17,33 @@ function Statistics() {
     const getMemStats = () =>{
         api.get('/stats/mem').then(res => {
             console.log(res.data)
-            
-            setMemData(res.data)
+
+            let furnished_data = []
+            res.data.forEach((x)=>{
+                let timestamp = x.timestamp
+                let time = timestamp.split("T")[1]
+
+                time = time.split(":")[0]+":"+time.split(":")[1]
+
+                let mem = x.memFree
+                let data_point = {"time":time, "memFree":mem}
+                furnished_data.push(data_point)
+            })
+            setMemData(furnished_data)
        }).catch((err) => {
             console.log(err)
         })
     }
     
-
+    
     return (
         <Layout servername="seidlserver">
             <h1>Statistics</h1>
             <button onClick={getMemStats}>Get Mem Stats</button>
             <LineChart width={600} height={300} data={memData}>
-                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                <Line type="monotone" dataKey="memFree" stroke="#8884d8" />
                 <CartesianGrid stroke="#ccc" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="time" label="Memory []"/>
                 <YAxis />
             </LineChart>
         </Layout>
