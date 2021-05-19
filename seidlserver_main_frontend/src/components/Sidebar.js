@@ -6,9 +6,7 @@ import { faCog, faChartPie, faServer, faColumns, faTimes, faBars } from "@fortaw
 import SidebarItem from './SidebarItem';
 
 
-function Sidebar() {
-
-  const [open, setOpen] = useState(false);
+function Sidebar({open, setOpen}) {
 
     return (
       <div className={`sidebar noselect ${open ? 'sidebar-open' : 'sidebar-closed'}`}>
