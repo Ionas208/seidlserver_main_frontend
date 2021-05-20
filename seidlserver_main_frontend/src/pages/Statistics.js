@@ -17,7 +17,7 @@ function Statistics({open, setOpen}) {
         }
     });
 
-    const memTotal = 16
+    var memTotal = 24
     const getMemStats = () =>{
         api.get('/stats/mem').then(res => {
 
@@ -26,6 +26,9 @@ function Statistics({open, setOpen}) {
                 let timestamp = x.timestamp
                 let time = timestamp.split("T")[1]
                 time = time.split(":")[0]+":"+time.split(":")[1]
+
+                console.log(x)
+                memTotal = x.memTotal
 
                 let mem = x.memFree
                 let data_point = {"time":time, "memUsed":Math.round((memTotal-mem)*100)/100}
@@ -49,7 +52,7 @@ function Statistics({open, setOpen}) {
                 let time = timestamp.split("T")[1]
                 time = time.split(":")[0]+":"+time.split(":")[1]
 
-                let usage = x.load.idle
+                let usage = 100-x.load.idle
                 let data_point = {"time":time, "usage":Math.round(usage*100)/100}
 
                 furnished_data.push(data_point)
