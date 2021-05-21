@@ -25,8 +25,8 @@ class StateOperator extends React.Component {
 
     refreshState() {
         api.get('/server/state').then(res => {
-            console.log(res.data.state)
-            this.setState({upState: res.data.state});
+            console.log(res.data)
+            this.setState({upState: res.data});
         }).catch((err) => {
             this.setState({upState: 'CONNECTION FAILED'});
         })
@@ -35,9 +35,7 @@ class StateOperator extends React.Component {
     power() {
         if(this.state.upState === 'DOWN'){
             api.post('/server/start').then(res => {
-                console.log('ifPower')
-                console.log(res.data)
-                this.setState({upState: res.data.state})
+                this.setState({upState: res.data})
             }).catch(err => {
                 console.log(err)
             })
@@ -46,7 +44,7 @@ class StateOperator extends React.Component {
             api.post('/server/stop').then(res => {
                 console.log('elsePower')
                 console.log(res.data)
-                this.setState({upState: res.data.state})
+                this.setState({upState: res.data})
             }).catch(err => {
                 console.log(err)
             })
@@ -58,7 +56,7 @@ class StateOperator extends React.Component {
             this.setState({upState: ''});
             api.post('/server/restart').then(res => {
                 console.log(res.data)
-                this.setState({upState: res.data.state})
+                this.setState({upState: res.data})
             }).catch(err => {
                 this.setState({upState: 'CONNECTION FAILED'})
             })
