@@ -22,8 +22,8 @@ function App() {
         <Route path="/gameservers" exact render={() => (<Gameservers setOpen={setOpen} open={open}/>)} />
         <Route path="/settings" exact render={() => (<Settings setOpen={setOpen} open={open}/>)} />
         <Route path="/statistics" exact render={() => (<Statistics setOpen={setOpen} open={open}/>)} />
-        <Route path="/login" exact render={Login} />
-        <Route path="/register" exact render={Register} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register} />
         <Route path="/" exact render={() => (<Overview setOpen={setOpen} open={open}/>)} />
       </Switch>
     </Router>
