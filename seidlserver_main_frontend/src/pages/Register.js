@@ -1,9 +1,32 @@
 import React from 'react'
 import LayoutWithoutSidebar from '../components/LayoutWithoutSidebar'
 import '../styles/Login.css'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import validate from '../util/validate'
+import axios from 'axios'
 
 function Register() {
+
+    const api = axios.create({
+        baseURL: process.env.REACT_APP_BASE_URL
+    });
+
+    const register = () =>{
+        api.post('/auth/register', {
+            first_name:"",
+            last_name:"",
+            email:"hans",
+            password:"franz"
+        }).then(res => {
+            console.log(res)
+       }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    if (!validate()) {
+        return <Redirect to="/login" />
+    }
     return (
         <LayoutWithoutSidebar servername="seidlserver">
             <div className="login-container noselect">
@@ -20,7 +43,7 @@ function Register() {
                         <button className="bt-standard align-right">Register</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </LayoutWithoutSidebar>
     )
 }

@@ -6,7 +6,10 @@ import { faSyncAlt, faCircle, faPowerOff } from "@fortawesome/free-solid-svg-ico
 import React from 'react';
 
 const api = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL
+    baseURL: process.env.REACT_APP_BASE_URL,
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}` 
+    }
 });
 
 class StateOperator extends React.Component {
@@ -21,9 +24,9 @@ class StateOperator extends React.Component {
     }
 
     refreshState() {
-        api.get('/state').then(res => {
-            console.log(res.data.state)
-            this.setState({upState: res.data.state});
+        api.get('/server/state').then(res => {
+            console.log(res.data)
+            this.setState({upState: res.data});
         }).catch((err) => {
             this.setState({upState: 'CONNECTION FAILED'});
         })
@@ -31,19 +34,17 @@ class StateOperator extends React.Component {
 
     power() {
         if(this.state.upState === 'DOWN'){
-            api.post('/start').then(res => {
-                console.log('ifPower')
-                console.log(res.data)
-                this.setState({upState: res.data.state})
+            api.post('/server/start').then(res => {
+                this.setState({upState: res.data})
             }).catch(err => {
                 console.log(err)
             })
         }
         else {
-            api.post('/stop').then(res => {
+            api.post('/server/stop').then(res => {
                 console.log('elsePower')
                 console.log(res.data)
-                this.setState({upState: res.data.state})
+                this.setState({upState: res.data})
             }).catch(err => {
                 console.log(err)
             })
@@ -53,9 +54,9 @@ class StateOperator extends React.Component {
     restart() {
         if(this.state.upState === 'UP') {
             this.setState({upState: ''});
-            api.post('/restart').then(res => {
+            api.post('/server/restart').then(res => {
                 console.log(res.data)
-                this.setState({upState: res.data.state})
+                this.setState({upState: res.data})
             }).catch(err => {
                 this.setState({upState: 'CONNECTION FAILED'})
             })
