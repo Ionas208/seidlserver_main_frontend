@@ -1,12 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import LayoutWithoutSidebar from '../components/LayoutWithoutSidebar'
 import '../styles/Login.css'
 import { Link, Redirect } from 'react-router-dom';
-import validate from '../util/validate'
+import validate from '../utils/validate'
 import axios from 'axios'
 
 function Register() {
-
     const api = axios.create({
         baseURL: process.env.REACT_APP_BASE_URL
     });
@@ -43,7 +42,7 @@ function Register() {
                         <button className="bt-standard align-right">Register</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </LayoutWithoutSidebar>
     )
 }
