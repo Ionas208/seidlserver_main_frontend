@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
-import validate from '../util/validate'
+import validate from '../utils/validate'
 import { Redirect } from 'react-router-dom';
 import axios from 'axios'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 function Statistics({open, setOpen}) {
+    
+    const [memData, setMemData] = useState(null)
+
     if (validate()) {
         return <Redirect to="/login" />
     }
-function Statistics() {
-
-    const [memData, setMemData] = useState(null)
 
     const api = axios.create({
         baseURL: process.env.REACT_APP_BASE_URL,

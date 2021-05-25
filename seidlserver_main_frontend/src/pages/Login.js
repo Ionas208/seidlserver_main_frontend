@@ -4,7 +4,7 @@ import '../styles/Login.css'
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
-import validate from '../util/validate'
+import validate from '../utils/validate'
 
 function Login() {
 
@@ -28,12 +28,6 @@ function Login() {
              console.log(err)
          })
     }
-
-    
-    const performLogout = () => {
-        localStorage.removeItem("jwt")
-    }
-
 
     return (
         <LayoutWithoutSidebar servername="seidlserver">

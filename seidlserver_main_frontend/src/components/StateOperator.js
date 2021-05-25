@@ -6,7 +6,7 @@ import { faSyncAlt, faCircle, faPowerOff } from "@fortawesome/free-solid-svg-ico
 import React from 'react';
 
 const api = axios.create({
-    baseURL: 'http://10.0.0.20:8080/'
+    baseURL: process.env.REACT_APP_BASE_URL
 });
 
 class StateOperator extends React.Component {

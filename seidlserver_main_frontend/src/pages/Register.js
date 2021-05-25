@@ -16,7 +16,7 @@ function Register() {
                     <p>Repeat Password</p>
                     <input type="password" />
                     <div className="text-and-bt">
-                        <span className="small-txt">Already an Account? <Link to="/login">Login</Link></span>
+                        <span className="small-txt">Already have an Account? <Link to="/login">Login</Link></span>
                         <button className="bt-standard align-right">Register</button>
                     </div>
                 </div>
