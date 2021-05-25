@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import StateOperator from '../components/StateOperator'
 import { Redirect } from 'react-router-dom';
-import validate from '../util/validate'
+import validate from '../utils/validate'
 
 function Overview({open, setOpen}) {
 
