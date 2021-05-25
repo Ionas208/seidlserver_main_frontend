@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LayoutWithoutSidebar from '../components/LayoutWithoutSidebar'
 import '../styles/Login.css'
 import { Link, Redirect } from 'react-router-dom';
@@ -7,43 +7,49 @@ import jwt from 'jsonwebtoken'
 import validate from '../utils/validate'
 
 function Login() {
-
-    if (!validate()) {
-        return <Redirect to="/overview" />
-    }
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [loggedIn, setLoggedIn] = useState(false)
 
     const api = axios.create({
         baseURL: process.env.REACT_APP_BASE_URL
     });
+
+    if (!validate() || loggedIn) {
+        return <Redirect to="/overview" />
+    }
     
-    const performLogin = (email, password) => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
          api.post('/auth/login', {
-             email:"martin",
-             password:"martin"
+             "email": email,
+             "password": password
          }).then(res => {
             localStorage.setItem("jwt", res.data)
             let jWt = jwt.decode(res.data)
-            console.log(jWt)
+            setLoggedIn(true)
         }).catch((err) => {
-             console.log(err)
-         })
+            alert("Login failed")
+        })
     }
 
     return (
         <LayoutWithoutSidebar servername="seidlserver">
-            <div className="login-container noselect">
-                <div className="login-content">
-                    <h1>Login</h1>
-                    <p>Email</p>
-                    <input type="email" />
-                    <p>Password</p>
-                    <input type="password" />
-                    <div className="text-and-bt">
-                        <span className="small-txt">No Account? <Link to="/register">Register</Link></span>
-                        <button onClick={performLogin} className="bt-standard align-right">Login</button>
+            <form onSubmit={handleSubmit}>
+                <div className="login-container noselect">
+                    <div className="login-content">
+                        <h1>Login</h1>
+                        <p>Email</p>
+                        <input type="email" value={email} onChange={event => setEmail(event.target.value)}/>
+                        <p>Password</p>
+                        <input type="password" value={password} onChange={event => setPassword(event.target.value)}/>
+                        <div className="text-and-bt">
+                            <span className="small-txt">No Account? <Link to="/register">Register</Link></span>
+                            <button onClick={handleSubmit} className="bt-standard align-right">Login</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </LayoutWithoutSidebar>
     );
 }

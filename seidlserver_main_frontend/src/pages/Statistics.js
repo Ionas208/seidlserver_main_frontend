@@ -6,11 +6,8 @@ import axios from 'axios'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
 function Statistics({open, setOpen}) {
-   const [memData, setMemData] = useState(null)
+    const [memData, setMemData] = useState(null)
     const [cpuData, setCpuData] = useState(null)
-    if (validate()) {
-        return <Redirect to="/login" />
-    }
 
     const api = axios.create({
         baseURL: process.env.REACT_APP_BASE_URL,
