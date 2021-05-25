@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import { Redirect } from 'react-router-dom';
-import validate from '../util/validate'
+import validate from '../utils/validate'
 
 function Gameservers({open, setOpen}) {
     
