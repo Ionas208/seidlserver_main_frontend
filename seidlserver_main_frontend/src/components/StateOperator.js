@@ -22,6 +22,7 @@ function StateOperator() {
         api.get('/server/state').then(res => {
             setUpstate(res.data);
         }).catch((err) => {
+            console.log(err)
             setUpstate('CONNECTION FAILED');
         })
     }
@@ -29,16 +30,15 @@ function StateOperator() {
     const power = () => {
         if (upState === 'DOWN') {
             api.post('/server/start').then(res => {
-                refreshState()
+                console.log("starting...")
             }).catch(err => {
                 setUpstate('CONNECTION FAILED');
             })
         }
         else {
             api.post('/server/stop').then(res => {
-                console.log('elsePower')
-                console.log(res.data)
-                setUpstate(res.data)
+                console.log("stopping...")
+                setUpstate('');
             }).catch(err => {
                 console.log(err)
             })
@@ -47,10 +47,9 @@ function StateOperator() {
 
     const restart = () => {
         if (upState === 'UP') {
-            setUpstate('');
             api.post('/server/restart').then(res => {
-                console.log(res.data)
-                setUpstate(res.data)
+                console.log("restarting...")
+                setUpstate('');
             }).catch(err => {
                 setUpstate('CONNECTION FAILED')
             })
@@ -58,12 +57,10 @@ function StateOperator() {
     }
 
     useEffect(() => {
-        console.log('bladi wörks')
         refreshState();
         setInterval(() => {
-            console.log('bladi wörks')
             refreshState();
-        }, 15000)
+        }, 5000)
     }, [])
 
     return (
