@@ -71,7 +71,7 @@ function Statistics({open, setOpen}) {
     }
     
     return (
-        <Layout servername="seidlserver" open={open} setOpen={setOpen}>
+        <Layout servername="SEIDLSERVER" open={open} setOpen={setOpen}>
             <h1 className="stat-h1">Statistics</h1>
             <div className="stat-container">
                 <div>

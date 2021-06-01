@@ -34,7 +34,7 @@ function Login() {
     }
 
     return (
-        <LayoutWithoutSidebar servername="seidlserver">
+        <LayoutWithoutSidebar servername="SEIDLSERVER">
             <form onSubmit={handleSubmit}>
                 <div className="login-container noselect">
                     <div className="login-content">

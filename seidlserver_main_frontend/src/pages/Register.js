@@ -27,7 +27,7 @@ function Register() {
         return <Redirect to="/login" />
     }
     return (
-        <LayoutWithoutSidebar servername="seidlserver">
+        <LayoutWithoutSidebar servername="SEIDLSERVER">
             <div className="login-container noselect">
                 <div className="login-content">
                     <h1>Register</h1>
