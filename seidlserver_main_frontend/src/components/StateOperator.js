@@ -14,13 +14,14 @@ const api = axios.create({
 
 
 function StateOperator() {
-
-
     const [upState, setUpstate] = useState('')
-
     const refreshState = () => {
         api.get('/server/state').then(res => {
-            setUpstate(res.data);
+            console.log("refreshing...")
+            if(!(upState=='STARTING') && !(upState=='STOPPING') || !(upState=='RESTARTING')){
+                console.log("refreshing setting")
+                setUpstate(res.data);
+            }
         }).catch((err) => {
             console.log(err)
             setUpstate('CONNECTION FAILED');
@@ -29,17 +30,30 @@ function StateOperator() {
 
     const power = () => {
         if (upState === 'DOWN') {
+            setUpstate('STARTING')
+            var timeout = setTimeout(() =>{
+                setUpstate('')
+                refreshState()
+            }, 30000)
+
             api.post('/server/start').then(res => {
                 console.log("starting...")
             }).catch(err => {
+                clearTimeout(timeout)
                 setUpstate('CONNECTION FAILED');
             })
         }
         else {
+            setUpstate('STOPPING')
+            var timeout = setTimeout(() =>{
+                setUpstate('')
+                refreshState()
+            }, 10000)
+
             api.post('/server/stop').then(res => {
                 console.log("stopping...")
-                setUpstate('');
             }).catch(err => {
+                clearTimeout(timeout)
                 console.log(err)
             })
         }
