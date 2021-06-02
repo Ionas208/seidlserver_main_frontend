@@ -14,7 +14,7 @@ function Settings({open, setOpen}) {
     }
     
     return (
-        <Layout servername="seidlserver" open={open} setOpen={setOpen}>
+        <Layout servername="SEIDLSERVER" open={open} setOpen={setOpen}>
             <button onClick={logout} className="bt-standard" ><Link to="/login">logout</Link></button>
         </Layout>
     )

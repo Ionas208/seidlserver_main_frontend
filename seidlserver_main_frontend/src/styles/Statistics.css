@@ -1,0 +1,16 @@
+.stat-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.stat-h2{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.stat-h1{
+    margin-top: 10px;
+}

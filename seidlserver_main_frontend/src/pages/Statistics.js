@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
+import '../styles/Statistics.css'
 import validate from '../utils/validate'
 import { Redirect } from 'react-router-dom';
 import axios from 'axios'
@@ -70,23 +71,31 @@ function Statistics({open, setOpen}) {
     }
     
     return (
-        <Layout servername="seidlserver" open={open} setOpen={setOpen}>
-            <h1>Statistics</h1>
-            <LineChart width={800} height={300} data={memData}>
-                <Line type="linear" dataKey="memUsed" stroke="#2B890D" dot={false} strokeWidth={2}/>
-                <CartesianGrid stroke="#ccc" />
-                <XAxis dataKey="time"/>
-                <YAxis unit="GB" type="number" domain={[0, memTotal]}/>
-                <Tooltip />
-            </LineChart>
-
-            <LineChart width={800} height={300} data={cpuData}>
-                <Line type="linear" dataKey="usage" stroke="#31A5E1" dot={false} strokeWidth={2}/>
-                <CartesianGrid stroke="#ccc" />
-                <XAxis dataKey="time"/>
-                <YAxis unit="%" type="number" domain={[0, 100]}/>
-                <Tooltip />
-            </LineChart>
+        <Layout servername="SEIDLSERVER" open={open} setOpen={setOpen}>
+            <h1 className="stat-h1">Statistics</h1>
+            <div className="stat-container">
+                <div>
+                    <h2 className="stat-h2">Memory</h2>
+                    <LineChart width={650} height={300} data={memData}>
+                        <Line type="linear" dataKey="memUsed" stroke="#2B890D" dot={false} strokeWidth={2}/>
+                        <CartesianGrid stroke="#ccc" />
+                        <XAxis dataKey="time"/>
+                        <YAxis unit="GB" type="number" domain={[0, memTotal]}/>
+                        <Tooltip />
+                    </LineChart>
+                </div>
+                <div>
+                <h2 className="stat-h2">RAM</h2>
+                    <LineChart width={650} height={300} data={cpuData}>
+                        <Line type="linear" dataKey="usage" stroke="#31A5E1" dot={false} strokeWidth={2}/>
+                        <CartesianGrid stroke="#ccc" />
+                        <XAxis dataKey="time"/>
+                        <YAxis unit="%" type="number" domain={[0, 100]}/>
+                        <Tooltip />
+                    </LineChart>
+                </div>
+            </div>
+            
         </Layout>
     )
 }
