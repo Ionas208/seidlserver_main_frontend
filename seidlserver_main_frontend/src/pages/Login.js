@@ -3,7 +3,6 @@ import LayoutWithoutSidebar from '../components/LayoutWithoutSidebar'
 import '../styles/Login.css'
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
 import validate from '../utils/validate'
 
 function Login() {
@@ -16,7 +15,7 @@ function Login() {
     });
 
     if (!validate() || loggedIn) {
-        return <Redirect to="/overview" />
+        return <Redirect to="/gameservers" />
     }
     
     const handleSubmit = (e) => {
@@ -26,7 +25,6 @@ function Login() {
              "password": password
          }).then(res => {
             localStorage.setItem("jwt", res.data)
-            let jWt = jwt.decode(res.data)
             setLoggedIn(true)
         }).catch((err) => {
             alert("Login failed")

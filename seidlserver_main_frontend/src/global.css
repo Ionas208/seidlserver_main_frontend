@@ -29,6 +29,10 @@
   cursor: pointer;
 }
 
+.bt-gameserver-item {
+  width: 4rem;
+}
+
 .bt-standard:focus {
   outline: none;
 }
@@ -49,7 +53,6 @@
 .bt-disabled {
   background-color: var(--disabled-bg);
   color: var(--disabled-text);
-  cursor: not-allowed;
 }
 
 .status-down {
@@ -62,6 +65,17 @@
 
 .status-no-connection {
   color: gray;
+}
+
+.bt-add-server {
+  height: 50%;
+  aspect-ratio: 1/1;
+  background: none;
+  border: #222222 2px dashed;
+  align-items: center;
+  cursor: pointer;
+  font-size: 2rem;  
+  outline: 0;
 }
 
 .loader {

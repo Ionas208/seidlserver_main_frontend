@@ -2,10 +2,10 @@ import React from 'react'
 import '../styles/GameserverList.css'
 import axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle, faPowerOff, faShare, faShareAlt, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faPowerOff, faSyncAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from 'react';
 
-function GameserverItem({ imageUrl, scriptname, id }) {
+function GameserverItem({ item, getServerList }) {
         
     const [upState, setUpState] = useState(false)
 
@@ -19,7 +19,7 @@ function GameserverItem({ imageUrl, scriptname, id }) {
     const getState = () => {
         api.get('gameserver/state',{
             params: {
-              id: id
+              id: item.id
             }
           }).then(res => {
             setUpState(res.data === 'ONLINE')
@@ -33,7 +33,7 @@ function GameserverItem({ imageUrl, scriptname, id }) {
     const power = () => {
         getState()
         if(upState) {
-            stopServer()
+            stopServer()    
         }
         else {
             startServer()
@@ -44,7 +44,7 @@ function GameserverItem({ imageUrl, scriptname, id }) {
         console.log("start")
         api.post('gameserver/start',{
             params: {
-              id: id
+              id: item.id
             }
           }).then(res => {
             setUpState(true)
@@ -58,7 +58,7 @@ function GameserverItem({ imageUrl, scriptname, id }) {
         console.log("stop")
         api.post('gameserver/stop',{
             params: {
-              id: id
+              id: item.id
             }
           }).then(res => {
             setUpState(false)
@@ -68,26 +68,41 @@ function GameserverItem({ imageUrl, scriptname, id }) {
         })
     } 
 
+    const removeServer = () => {
+        console.log("IDDDDDDDDDDDDDDDDDDD" + item.id)
+        api.post('gameserver/remove',{
+            params: {
+              id: item.id
+            }
+          }).then(res => {
+              console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+        getServerList();
+    }
+
     useEffect(() => {
         getState();
     }, [])
 
     return (
-        <div className="gameserver-item-container">
+        <div className="gameserver-item-container gameserver-item-game">
             <div className="gameserver-item-header">
-                <img src="https://images-eu.ssl-images-amazon.com/images/I/512dVKB22QL.png" />
-                <h1 className="gameserver-item-h1">mcserver</h1>
+                <img src={item.type.url} alt="" />
+                <h1 className="gameserver-item-h1">{item.script}</h1>
             </div>
             <div className="gameserver-item-operator">
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{display: 'flex', alignItems: 'center'}}>
-                        <h2>ONLINE</h2>
+                        <h2>{upState ? "ONLINE" : "OFFLINE"}</h2>
                         <FontAwesomeIcon icon={faCircle} className={`icon-status ${upState ? "status-up" : "status-down"}`} />
                     </div>
 
-                    <div>
-                        <button className="bt-standard" onClick={getState}><FontAwesomeIcon icon={faSyncAlt} /></button>
-                        <button className="bt-standard" onClick={power}><FontAwesomeIcon icon={faPowerOff} /></button>
+                    <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-end'}}>
+                        <button className="bt-standard bt-gameserver-item" onClick={getState}><FontAwesomeIcon icon={faSyncAlt} /></button>
+                        <button className="bt-standard bt-gameserver-item" onClick={removeServer}><FontAwesomeIcon icon={faTrashAlt} /></button>
+                        <button className="bt-standard bt-gameserver-item" onClick={power}><FontAwesomeIcon icon={faPowerOff} /></button>
                     </div>
                 </div>
             </div>

@@ -1,17 +1,37 @@
-.gameserver-list-container {
+/* .gameserver-list-container {
     margin: 30px 0;
     display: flex;
+    flex-direction: row;
+    
+    align-items: center;
     justify-content: space-around;
+} */
+
+.gameserver-list-container {
+    margin: 30px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .gameserver-item-container {
-    background-color: var(--bg-color);
-    color: white;
     display: flex;
     flex-direction: column;
-    width: clamp(30%, 50%, 50%);
-    margin: 0 10px;
+    width: 90%;
+    min-width: fit-content;
+    margin: 17px 5%;
+    min-height: 140px;
+}
+
+.gameserver-item-game {
+    background-color: var(--bg-color);
+    color: white;
     border: #222222 2px solid;
+}
+
+.gameserver-item-add {
+    border: #222222 2px dashed;
+    align-items: center;
+    justify-content: center;
 }
 
 img {

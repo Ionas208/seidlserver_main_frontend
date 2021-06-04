@@ -2,7 +2,7 @@ import '../styles/Sidebar.css';
 import '../global.css';
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faChartPie, faServer, faColumns, faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faChartPie, faServer, faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 import SidebarItem from './SidebarItem';
 
 

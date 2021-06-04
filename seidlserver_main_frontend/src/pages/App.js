@@ -2,8 +2,6 @@ import '../styles/App.css';
 import '../global.css';
 
 import {useState} from 'react'
-import Layout from '../components/Layout';
-import Overview from './Overview';
 import Gameservers from './Gameservers';
 import Statistics from './Statistics';
 import Login from './Login';
@@ -18,7 +16,6 @@ function App() {
   return (
     <Router>
       <Switch>
-        {/* <Route path="/overview" exact render={() => (<Overview setOpen={setOpen} open={open}/>)} />  */}
         <Route path="/gameservers" exact render={() => (<Gameservers setOpen={setOpen} open={open}/>)} />
         <Route path="/settings" exact render={() => (<Settings setOpen={setOpen} open={open}/>)} />
         <Route path="/statistics" exact render={() => (<Statistics setOpen={setOpen} open={open}/>)} />
