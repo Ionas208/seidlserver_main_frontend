@@ -4,6 +4,7 @@ import axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSyncAlt, faCircle, faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from 'react';
+import useInterval from '../utils/useInterval';
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
@@ -18,8 +19,7 @@ function StateOperator() {
     const refreshState = () => {
         api.get('/server/state').then(res => {
             console.log("refreshing...")
-            if(!(upState=='STARTING') && !(upState=='STOPPING') || !(upState=='RESTARTING')){
-                console.log("refreshing setting")
+            if(!(upState=='STARTING') && !(upState=='STOPPING') && !(upState=='RESTARTING')){
                 setUpstate(res.data);
             }
         }).catch((err) => {
@@ -34,16 +34,17 @@ function StateOperator() {
             var timeout = setTimeout(() =>{
                 setUpstate('')
                 refreshState()
-            }, 30000)
+            }, 35000)
 
             api.post('/server/start').then(res => {
                 console.log("starting...")
             }).catch(err => {
                 clearTimeout(timeout)
                 setUpstate('CONNECTION FAILED');
+                console.log(err)
             })
         }
-        else {
+        else if (upState === 'UP'){
             setUpstate('STOPPING')
             var timeout = setTimeout(() =>{
                 setUpstate('')
@@ -54,6 +55,7 @@ function StateOperator() {
                 console.log("stopping...")
             }).catch(err => {
                 clearTimeout(timeout)
+                setUpstate('CONNECTION FAILED');
                 console.log(err)
             })
         }
@@ -61,21 +63,28 @@ function StateOperator() {
 
     const restart = () => {
         if (upState === 'UP') {
+            setUpstate('RESTARTING')
+            var timeout = setTimeout(() =>{
+                setUpstate('')
+                refreshState()
+            }, 30000)
             api.post('/server/restart').then(res => {
                 console.log("restarting...")
-                setUpstate('');
             }).catch(err => {
-                setUpstate('CONNECTION FAILED')
+                clearTimeout(timeout)
+                console.log(err)
+                setUpstate('CONNECTION FAILED');
             })
         }
     }
 
     useEffect(() => {
         refreshState();
-        setInterval(() => {
-            refreshState();
-        }, 5000)
     }, [])
+
+    useInterval(()=>{
+        refreshState();
+    }, 5000)
 
     return (
         <>
