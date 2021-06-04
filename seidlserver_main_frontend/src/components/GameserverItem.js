@@ -42,9 +42,7 @@ function GameserverItem({ item, getServerList }) {
 
     const startServer = () => {
         console.log("start")
-        api.post('gameserver/start',{
-              id: item.id
-          }).then(res => {
+        api.post('gameserver/start?id=' + item.id).then(res => {
             setUpState(true)
         }).catch((err) => {
             console.log(err)
@@ -54,9 +52,7 @@ function GameserverItem({ item, getServerList }) {
 
     const stopServer = () => {
         console.log("stop")
-        api.post('gameserver/stop',{
-            id: item.id
-        }).then(res => {
+        api.post('gameserver/stop?id=' + item.id).then(res => {
             setUpState(false)
         }).catch((err) => {
             console.log(err)
