@@ -2,6 +2,8 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { Redirect } from 'react-router-dom';
 import validate from '../utils/validate'
+import StateOperator from '../components/StateOperator'
+import GameserverList from '../components/GameserverList'
 
 function Gameservers({open, setOpen}) {
     
@@ -12,6 +14,8 @@ function Gameservers({open, setOpen}) {
     return (
         <Layout servername="SEIDLSERVER" open={open} setOpen={setOpen} >
             <h1>Gameservers</h1>
+            <StateOperator />
+            <GameserverList />
         </Layout>
     )
 }
