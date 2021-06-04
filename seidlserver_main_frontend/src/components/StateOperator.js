@@ -19,7 +19,7 @@ function StateOperator() {
     const refreshState = () => {
         api.get('/server/state').then(res => {
             console.log("refreshing...")
-            if(!(upState=='STARTING') && !(upState=='STOPPING') && !(upState=='RESTARTING')){
+            if(!(upState==='STARTING') && !(upState==='STOPPING') && !(upState==='RESTARTING')){
                 setUpstate(res.data);
             }
         }).catch((err) => {

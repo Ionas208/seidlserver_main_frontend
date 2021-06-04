@@ -43,9 +43,7 @@ function GameserverItem({ item, getServerList }) {
     const startServer = () => {
         console.log("start")
         api.post('gameserver/start',{
-            params: {
               id: item.id
-            }
           }).then(res => {
             setUpState(true)
         }).catch((err) => {
@@ -57,10 +55,8 @@ function GameserverItem({ item, getServerList }) {
     const stopServer = () => {
         console.log("stop")
         api.post('gameserver/stop',{
-            params: {
-              id: item.id
-            }
-          }).then(res => {
+            id: item.id
+        }).then(res => {
             setUpState(false)
         }).catch((err) => {
             console.log(err)
@@ -70,16 +66,13 @@ function GameserverItem({ item, getServerList }) {
 
     const removeServer = () => {
         console.log("IDDDDDDDDDDDDDDDDDDD" + item.id)
-        api.post('gameserver/remove',{
-            params: {
-              id: item.id
-            }
-          }).then(res => {
+        api.post('gameserver/remove?id=' + item.id
+          ).then(res => {
               console.log(res)
+              getServerList();
         }).catch((err) => {
             console.log(err)
         })
-        getServerList();
     }
 
     useEffect(() => {
@@ -99,7 +92,7 @@ function GameserverItem({ item, getServerList }) {
                         <FontAwesomeIcon icon={faCircle} className={`icon-status ${upState ? "status-up" : "status-down"}`} />
                     </div>
 
-                    <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-end'}}>
+                    <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                         <button className="bt-standard bt-gameserver-item" onClick={getState}><FontAwesomeIcon icon={faSyncAlt} /></button>
                         <button className="bt-standard bt-gameserver-item" onClick={removeServer}><FontAwesomeIcon icon={faTrashAlt} /></button>
                         <button className="bt-standard bt-gameserver-item" onClick={power}><FontAwesomeIcon icon={faPowerOff} /></button>

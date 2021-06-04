@@ -71,10 +71,11 @@
   height: 50%;
   aspect-ratio: 1/1;
   background: none;
-  border: #222222 2px dashed;
+  border: none;
   align-items: center;
   cursor: pointer;
-  font-size: 2rem;  
+  font-size: 3.5rem;  
+  font-weight: lighter;
   outline: 0;
 }
 

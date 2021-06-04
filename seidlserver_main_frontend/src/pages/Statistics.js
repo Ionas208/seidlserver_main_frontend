@@ -65,7 +65,7 @@ function Statistics({open, setOpen}) {
     useEffect(()=>{
         getMemStats()
         getCpuStats()
-    })
+    }, [])
     if (validate()) {
         return <Redirect to="/login" />
     }
