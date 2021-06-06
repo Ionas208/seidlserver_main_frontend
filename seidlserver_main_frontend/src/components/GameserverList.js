@@ -34,9 +34,9 @@ function GameserverList() {
     return (
         <div className="gameserver-list-container noselect">
             {serverList.map((item) =>
-                <GameserverItem key={item.id} item={item} getServerList={getServerList}/>
+                <GameserverItem key={item.id} item={item} getServerList={getServerList} />
             )}
-            <GameserverAdd getServerList={getServerList}/>
+            <GameserverAdd getServerList={getServerList} />
         </div>
     )
 }

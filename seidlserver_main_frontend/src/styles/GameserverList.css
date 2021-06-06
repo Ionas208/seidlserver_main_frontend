@@ -60,3 +60,26 @@ img {
     margin-left: 7px;
     color: #00ff00;
 }
+
+
+.modal-container {
+    background-color: white;
+    width: 20%;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    outline: 0;
+    padding: 1% 2%;
+    border-radius: 5px;
+}
+
+.modal-add-server-container {
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+.form-header {
+    font-size: 1.3rem;
+    font-weight: 600;
+}

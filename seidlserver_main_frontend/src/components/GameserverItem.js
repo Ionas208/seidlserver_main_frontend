@@ -1,4 +1,3 @@
-import React from 'react'
 import '../styles/GameserverList.css'
 import axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,7 +24,7 @@ function GameserverItem({ item, getServerList }) {
             setUpState(res.data === 'ONLINE')
             console.log(res.data)
         }).catch((err) => {
-            console.log(err)
+            console.log(err.message)
             setUpState(false)
         })
     }
@@ -61,7 +60,6 @@ function GameserverItem({ item, getServerList }) {
     } 
 
     const removeServer = () => {
-        console.log("IDDDDDDDDDDDDDDDDDDD" + item.id)
         api.post('gameserver/remove?id=' + item.id
           ).then(res => {
               console.log(res)
@@ -79,7 +77,7 @@ function GameserverItem({ item, getServerList }) {
         <div className="gameserver-item-container gameserver-item-game">
             <div className="gameserver-item-header">
                 <img src={item.type.url} alt="" />
-                <h1 className="gameserver-item-h1">{item.script}</h1>
+                <h1 className="gameserver-item-h1">{item.servername}</h1>
             </div>
             <div className="gameserver-item-operator">
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>

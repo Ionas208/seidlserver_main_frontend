@@ -1,4 +1,4 @@
-.login-content input {
+input, select {
     background: none;
     height: 2rem;
     margin: 5% 0 10%;
@@ -9,7 +9,7 @@
     font-size: 1.3rem;
 }
 
-.login-content input:focus {
+ input:focus {
     border-color: var(--bg-color);
 }
 
@@ -54,3 +54,4 @@
     font-size: .9rem !important;
     text-decoration: underline;
 }
+
