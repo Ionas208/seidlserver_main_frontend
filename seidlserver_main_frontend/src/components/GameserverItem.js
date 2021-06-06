@@ -77,7 +77,10 @@ function GameserverItem({ item, getServerList }) {
         <div className="gameserver-item-container gameserver-item-game">
             <div className="gameserver-item-header">
                 <img src={item.type.url} alt="" />
-                <h1 className="gameserver-item-h1">{item.servername}</h1>
+                <div style={{marginLeft: '20px'}}>
+                    <h1 className="gameserver-item-h1">{item.servername}</h1>
+                    <p>{item.script}</p>
+                </div>
             </div>
             <div className="gameserver-item-operator">
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>

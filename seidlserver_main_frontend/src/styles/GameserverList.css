@@ -38,10 +38,6 @@ img {
     width: 98px;
 }
 
-.gameserver-item-h1 {
-    margin-left: 10px;
-}
-
 .gameserver-item-header {
     display: flex;
     align-items: center;
@@ -64,10 +60,9 @@ img {
 
 .modal-container {
     background-color: white;
-    width: 20%;
-    position: absolute;
-    top: 20%;
-    left: 40%;
+    width: clamp(400px, 20%, 20%);
+    /* position: absolute; */
+    margin: 100px auto auto;
     outline: 0;
     padding: 1% 2%;
     border-radius: 5px;
