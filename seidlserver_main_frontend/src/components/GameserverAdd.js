@@ -12,6 +12,7 @@ function GameserverAdd({ getServerList }) {
 
     const [scriptInput, setScriptInput] = useState('')
     const [servernameInput, setServernameInput] = useState('')
+    const [servertypeInput, setServertypeInput] = useState('')
 
 
     const api = axios.create({
@@ -20,19 +21,6 @@ function GameserverAdd({ getServerList }) {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
     });
-
-    const submitServer = () => {
-        api.post('/gameserver/add', {
-            "script": "/mcserver",
-            "servername": "asd",
-            "type": "Minecraft"
-        }).then(res => {
-            getServerList()
-        }).catch((err) => {
-            console.error(err)
-            alert('something went wrong')
-        })
-    }
 
     const getTypes = () => {
         api.get('/gameserver/types').then(res => {
@@ -59,7 +47,11 @@ function GameserverAdd({ getServerList }) {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        api.post('/gameserver/add?linuxuser=' + scriptInput + '&servername=' + servernameInput + '&type=' + 'Minecraft').then(res => {
+        api.post('/gameserver/add',{
+            "linuxuser": scriptInput,
+            "servername": servernameInput,
+            "type": servertypeInput
+        }).then(res => {
             getServerList()
             setOpen(false)
         }).catch((err) => {
@@ -90,9 +82,10 @@ function GameserverAdd({ getServerList }) {
                                 })} */}
 
                                 <p className="form-header">Type</p>
-                                <select>
+                                <select value={servertypeInput} onChange={e => setServertypeInput(e.target.value)}>
                                     <option>Ark</option>
                                     <option>Minecraft</option>
+                                    <option>TS3</option>
                                 </select>
                                 <p className="form-header">Linuxuser</p>
                                 <input type="text" value={scriptInput} onChange={e => handleScriptInput(e)} />
