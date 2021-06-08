@@ -79,7 +79,7 @@ function GameserverItem({ item, getServerList }) {
                 <img src={item.type.url} alt="" />
                 <div style={{marginLeft: '20px'}}>
                     <h1 className="gameserver-item-h1">{item.servername}</h1>
-                    <p>{item.script}</p>
+                    <p>/home/{item.linuxuser}</p>
                 </div>
             </div>
             <div className="gameserver-item-operator">
