@@ -21,7 +21,7 @@ function GameserverItem({ item, getServerList }) {
               id: item.id
             }
           }).then(res => {
-            setUpState(res.data === 'ONLINE')
+            setUpState(res.data === 'ONLINE' || res.data === 'STARTED')
             console.log(res.data)
         }).catch((err) => {
             console.log(err.message)
