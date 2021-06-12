@@ -9,10 +9,12 @@ import Backdrop from '@material-ui/core/Backdrop'
 import jwt from 'jsonwebtoken'
 
 function GameserverItem({ item, getServerList }) {
-        
     const [upState, setUpState] = useState(false)
     const [open, setOpen] = useState(false)
     const [emailInput, setEmailInput] = useState('')
+
+    let user = jwt.decode(localStorage.getItem("jwt"))
+    const isOwner = item.owner === user.sub ? true : false
 
     const api = axios.create({
         baseURL: process.env.REACT_APP_BASE_URL,
@@ -66,8 +68,7 @@ function GameserverItem({ item, getServerList }) {
     } 
 
     const removeServer = () => {
-        let user = jwt.decode(localStorage.getItem("jwt"))
-        if(item.owner == user.sub){
+        if(isOwner){
             api.post('gameserver/remove?id=' + item.id
             ).then(res => {
                 console.log(res)
@@ -131,7 +132,7 @@ function GameserverItem({ item, getServerList }) {
                 </div>
             </div>
 
-            <button class="bt-gameserver-share" onClick={() => { setOpen(true) }}><FontAwesomeIcon icon={faShareAlt} className={`icon-share`}/></button>
+            <button className="bt-gameserver-share" style={isOwner ? {visibility: 'visible'} : {visibility: 'hidden'}} onClick={() => { setOpen(true) }}><FontAwesomeIcon icon={faShareAlt} className={`icon-share`}/></button>
             <Modal
                 open={open}
                 onClose={() => setOpen(false)}
