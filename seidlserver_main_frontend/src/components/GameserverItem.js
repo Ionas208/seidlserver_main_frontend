@@ -30,7 +30,6 @@ function GameserverItem({ item, getServerList }) {
               id: item.id
             }
           }).then(res => {
-            setLoading(false)
             setUpState(res.data === 'ONLINE' || res.data === 'STARTED')
             console.log(res.data)
         }).catch((err) => {
@@ -59,11 +58,13 @@ function GameserverItem({ item, getServerList }) {
     
     const power = () => {
         getState()
-        if(upState) {
-            stopServer()    
-        }
-        else {
-            startServer()
+        if(!loading){
+            if(upState) {
+                stopServer()    
+            }
+            else {
+                startServer()
+            }
         }
     }
 
