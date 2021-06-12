@@ -1,12 +1,18 @@
 import '../styles/GameserverList.css'
 import axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle, faPowerOff, faSyncAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faPowerOff, faSyncAlt, faTrashAlt, faShareAlt} from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from 'react';
+import Modal from '@material-ui/core/Modal'
+import Fade from '@material-ui/core/Fade'
+import Backdrop from '@material-ui/core/Backdrop'
+import jwt from 'jsonwebtoken'
 
 function GameserverItem({ item, getServerList }) {
         
     const [upState, setUpState] = useState(false)
+    const [open, setOpen] = useState(false)
+    const [emailInput, setEmailInput] = useState('')
 
     const api = axios.create({
         baseURL: process.env.REACT_APP_BASE_URL,
@@ -60,18 +66,46 @@ function GameserverItem({ item, getServerList }) {
     } 
 
     const removeServer = () => {
-        api.post('gameserver/remove?id=' + item.id
-          ).then(res => {
-              console.log(res)
-              getServerList();
-        }).catch((err) => {
-            console.log(err)
-        })
+        let user = jwt.decode(localStorage.getItem("jwt"))
+        if(item.owner == user.sub){
+            api.post('gameserver/remove?id=' + item.id
+            ).then(res => {
+                console.log(res)
+                getServerList();
+            }).catch((err) => {
+                console.log(err)
+            })
+        }else{
+            api.post('gameserver/unshare?serverid=' + item.id
+            ).then(res => {
+                console.log(res)
+                getServerList();
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
+        
     }
 
     useEffect(() => {
         getState();
-    }, [])
+    }, [open])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        api.post('/gameserver/share?serverid='+item.id+'&email='+emailInput,).then(res => {
+            setOpen(false)
+            setEmailInput('')
+        }).catch((err) => {
+            console.error(err)
+            if(err.response.status == 400){
+                alert('Server is already shared with the user.')
+            }else{
+                alert('Sharing was not successful.')
+            }
+            
+        })
+    }
 
     return (
         <div className="gameserver-item-container gameserver-item-game">
@@ -96,6 +130,28 @@ function GameserverItem({ item, getServerList }) {
                     </div>
                 </div>
             </div>
+
+            <button class="bt-gameserver-share" onClick={() => { setOpen(true) }}><FontAwesomeIcon icon={faShareAlt} className={`icon-share`}/></button>
+            <Modal
+                open={open}
+                onClose={() => setOpen(false)}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                    <div className="modal-container">
+                        <h1>Share Gameserver</h1>
+                        <form onSubmit={handleSubmit}>
+                            <p className="form-header">Email</p>
+                            <input type="text" value={emailInput} onChange={e => setEmailInput(e.target.value)} /><br></br>
+                            <button className="bt-standard" style={{ marginLeft: 'auto' }} onClick={handleSubmit}>Share</button>
+                        </form>
+                    </div>
+                </Fade>
+            </Modal>
         </div>
     )
 }
