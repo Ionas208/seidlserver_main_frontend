@@ -11,6 +11,7 @@ import jwt from 'jsonwebtoken'
 function GameserverItem({ item, getServerList }) {
     const [upState, setUpState] = useState(false)
     const [open, setOpen] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [emailInput, setEmailInput] = useState('')
 
     let user = jwt.decode(localStorage.getItem("jwt"))
@@ -29,11 +30,30 @@ function GameserverItem({ item, getServerList }) {
               id: item.id
             }
           }).then(res => {
+            setLoading(false)
             setUpState(res.data === 'ONLINE' || res.data === 'STARTED')
             console.log(res.data)
         }).catch((err) => {
             console.log(err.message)
             setUpState(false)
+            setLoading(false)
+        })
+    }
+
+    const getStateManual = () => {
+        setLoading(true)
+        api.get('gameserver/state',{
+            params: {
+              id: item.id
+            }
+          }).then(res => {
+            setUpState(res.data === 'ONLINE' || res.data === 'STARTED')
+            console.log(res.data)
+            setLoading(false)
+        }).catch((err) => {
+            console.log(err.message)
+            setUpState(false)
+            setLoading(false)
         })
     }
     
@@ -49,21 +69,27 @@ function GameserverItem({ item, getServerList }) {
 
     const startServer = () => {
         console.log("start")
+        setLoading(true)
         api.post('gameserver/start?id=' + item.id).then(res => {
             setUpState(true)
+            setLoading(false)
         }).catch((err) => {
             console.log(err)
             setUpState(false)
+            setLoading(false)
         })
     } 
 
     const stopServer = () => {
         console.log("stop")
+        setLoading(true)
         api.post('gameserver/stop?id=' + item.id).then(res => {
             setUpState(false)
+            setLoading(false)
         }).catch((err) => {
             console.log(err)
             setUpState(false)
+            setLoading(false)
         })
     } 
 
@@ -111,7 +137,11 @@ function GameserverItem({ item, getServerList }) {
     return (
         <div className="gameserver-item-container gameserver-item-game">
             <div className="gameserver-item-header">
-                <img src={item.type.url} alt="" />
+                <div className="gameserver-item-img-container">
+                    <img className={`${loading ? "tinted" : ""}`} src={item.type.url} alt="" />
+                    <div className={`${loading ? "loader" : ""} gameserver-item-loader`}></div>
+                </div>
+                
                 <div style={{marginLeft: '20px'}}>
                     <h1 className="gameserver-item-h1">{item.servername}</h1>
                     <p>/home/{item.linuxuser}</p>
@@ -125,7 +155,7 @@ function GameserverItem({ item, getServerList }) {
                     </div>
 
                     <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                        <button className="bt-standard bt-gameserver-item" onClick={getState}><FontAwesomeIcon icon={faSyncAlt} /></button>
+                        <button className="bt-standard bt-gameserver-item" onClick={getStateManual}><FontAwesomeIcon icon={faSyncAlt} /></button>
                         <button className="bt-standard bt-gameserver-item" onClick={removeServer}><FontAwesomeIcon icon={faTrashAlt} /></button>
                         <button className="bt-standard bt-gameserver-item" onClick={power}><FontAwesomeIcon icon={faPowerOff} /></button>
                     </div>

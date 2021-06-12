@@ -36,12 +36,31 @@
 }
 
 img {
-    width: 98px;
+    width: 100%;
+    height: 100%;
 }
 
 .gameserver-item-header {
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.gameserver-item-loader{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 3rem;
+    width: 3rem;
+}
+
+.tinted {
+     opacity: 0.5; 
+}
+
+.gameserver-item-img-container{
+    width: 98px;
+    height: 98px;
 }
 
 .gameserver-item-operator {
