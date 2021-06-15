@@ -38,16 +38,20 @@ function GameserverAdd({ getServerList }) {
     const handleScriptInput = (e) => {
         let reg = /[a-zA-Z0-9]+/;
         let temp = reg.exec(e.target.value)
-        if(temp === null) {
+        if (temp === null) {
             temp = ['']
         }
         setScriptInput(temp.join(''))
     }
 
+    const handleSelectChange = (e) => {
+        setServertypeInput(e.target.value)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        
-        api.post('/gameserver/add',{
+        alert(servertypeInput)
+        api.post('/gameserver/add', {
             "linuxuser": scriptInput,
             "servername": servernameInput,
             "type": servertypeInput
@@ -56,7 +60,7 @@ function GameserverAdd({ getServerList }) {
             setOpen(false)
         }).catch((err) => {
             console.error(err)
-            alert('scriptname must be unique')
+            alert('linuxuser already exists')
         })
     }
 
@@ -78,15 +82,12 @@ function GameserverAdd({ getServerList }) {
                         <h1>Add server</h1>
                         <form onSubmit={handleSubmit}>
                             <div className="modal-add-server-container">
-                                {serverTypes.map((item) => (
-                                    <h1>{JSON.stringify(item)}</h1>
-                                ))}
 
                                 <p className="form-header">Type</p>
-                                <select value={servertypeInput} onChange={e => setServertypeInput(e.target.value)}>
-                                    <option>Ark</option>
-                                    <option>Minecraft</option>
-                                    <option>TS3</option>
+                                <select onChange={handleSelectChange}>
+                                    {serverTypes.map((item, key) => (
+                                        <option key={key} value={item.name} >{item.name}</option>
+                                    ))}
                                 </select>
                                 <p className="form-header">Linuxuser</p>
                                 <input type="text" value={scriptInput} onChange={e => handleScriptInput(e)} />

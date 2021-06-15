@@ -8,6 +8,7 @@ import Login from './Login';
 import Register from './Register';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Settings from './Settings';
+import Help from './Help';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/statistics" exact render={() => (<Statistics setOpen={setOpen} open={open}/>)} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
+        <Route path="/help" exact component={Help} />
         <Route path="/" exact render={() => (<Gameservers setOpen={setOpen} open={open}/>)} />
       </Switch>
     </Router>

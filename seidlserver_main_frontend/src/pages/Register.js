@@ -15,30 +15,40 @@ function Register() {
     const [secondPassword, setSecondPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(false)
 
-    const register = () => {
-        if (password === secondPassword) {
-            api.post('/auth/register', {
-                first_name: "",
-                last_name: "",
-                email: email,
-                password: password
-            }).then(res => {
-                api.post('/auth/login', {
-                    "email": email,
-                    "password": password
+    const register = (e) => {
+        e.preventDefault()
+        if (password !== '' || secondPassword !== '') {
+            if(email.includes(' ')) {
+                alert('Username cannot contain \' \'')
+            }
+            else if (password === secondPassword) {
+                api.post('/auth/register', {
+                    first_name: " ",
+                    last_name: " ",
+                    email: email,
+                    password: password
                 }).then(res => {
-                    localStorage.setItem("jwt", res.data)
-                    setLoggedIn(true)
+                    api.post('/auth/login', {
+                        "email": email,
+                        "password": password
+                    }).then(res => {
+                        localStorage.setItem("jwt", res.data)
+                        setLoggedIn(true)
+                    }).catch((err) => {
+                        alert("Login failed")
+                    })
                 }).catch((err) => {
-                    alert("Login failed")
+                    alert('Registration failed')
+                    console.log(err)
                 })
-            }).catch((err) => {
-                alert('Registration failed')
-                console.log(err)
-            })
+            }
+            else {
+                alert('Passwords are not the same')
+            }
         }
+
         else {
-            alert('Passwords are not the same')
+            alert('Passwords cannot be empty')
         }
 
     }
@@ -61,7 +71,7 @@ function Register() {
                         <input type="password" value={secondPassword} onChange={event => setSecondPassword(event.target.value)} />
                         <div className="text-and-bt">
                             <span className="small-txt">Already have an Account? <Link to="/login">Login</Link></span>
-                            <button className="bt-standard align-right" onClick={register}>Register</button>
+                            <button className="bt-standard align-right" onClick={(e) => register}>Register</button>
                         </div>
                     </div>
                 </div>

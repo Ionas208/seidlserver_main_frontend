@@ -80,6 +80,8 @@ function StateOperator() {
 
     useEffect(() => {
         refreshState();
+        refreshState();
+        refreshState();
     }, [])
 
     useInterval(()=>{

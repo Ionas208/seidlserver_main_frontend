@@ -4,7 +4,6 @@ import '../styles/SidebarItem.css'
 import { Link } from 'react-router-dom';
 
 function SidebarItem(props) {
-
     return (
         <Link to={props.link}>
             <div className="sidebar-item">

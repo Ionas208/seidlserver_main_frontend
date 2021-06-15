@@ -88,6 +88,7 @@ img {
 .icon-share{
     font-size: 15px;
     color: white;
+    cursor: pointer;
 }
 
 .modal-container {
