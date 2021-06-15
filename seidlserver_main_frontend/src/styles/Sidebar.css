@@ -37,5 +37,14 @@
   }
 
 .container-sidebar-items {
+    height: max-content;
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh;
+}
+
+.sidebar-menu {
+  flex-grow: 1;
 }

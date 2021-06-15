@@ -8,11 +8,15 @@
 .settings-section {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: clamp(400px, 500px, 50%);
 }
 
 .settings-section input {
-    margin: 5% 0 0;
+    margin: 1% 0 5%;
+}
+
+.settings-section  p {
+    margin: 2% 0 2%;
 }
 
 .settings-section hr {
@@ -22,4 +26,3 @@
 .settings-section button {
     margin: 2% 0 2% auto;
 }
-

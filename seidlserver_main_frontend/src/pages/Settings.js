@@ -16,6 +16,7 @@ function Settings({ open, setOpen }) {
 
     return (
         <Layout servername="SEIDLSERVER" open={open} setOpen={setOpen}>
+            <h1 className="stat-h1">Settings</h1>
             <div className="settings-container">
                 <div className="settings-section">
                     <h2>Change Username</h2>
@@ -24,7 +25,6 @@ function Settings({ open, setOpen }) {
                     <p>Password</p>
                     <input type="password" />
                     <button className="bt-standard">Change</button>
-                    <hr />
                 </div>
                 <div className="settings-section">
                     <h2>Change Password</h2>
@@ -35,9 +35,8 @@ function Settings({ open, setOpen }) {
                     <p>Old Password</p>
                     <input type="password"/>
                     <button className="bt-standard">Change</button>
-                    <hr />
                 </div>
-                <button onClick={logout} className="bt-standard" ><Link to="/login">logout</Link></button>
+                <button onClick={logout} className="bt-standard" style={{marginBottom: '5%'}} ><Link to="/login">logout</Link></button>
             </div>
         </Layout>
     )

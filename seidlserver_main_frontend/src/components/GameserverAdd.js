@@ -60,6 +60,7 @@ function GameserverAdd({ getServerList }) {
         })
     }
 
+    console.log(serverTypes)
     return (
         <div className="gameserver-item-container gameserver-item-add">
             <button className="bt-add-server" onClick={() => { setOpen(true) }}>+</button>
@@ -77,9 +78,9 @@ function GameserverAdd({ getServerList }) {
                         <h1>Add server</h1>
                         <form onSubmit={handleSubmit}>
                             <div className="modal-add-server-container">
-                                {/* {serverTypes.map((item, i) => {
-                                    <GameserverAddContainer key={i} name={item.name} />
-                                })} */}
+                                {serverTypes.map((item) => (
+                                    <h1>{JSON.stringify(item)}</h1>
+                                ))}
 
                                 <p className="form-header">Type</p>
                                 <select value={servertypeInput} onChange={e => setServertypeInput(e.target.value)}>
