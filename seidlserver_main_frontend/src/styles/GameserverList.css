@@ -101,6 +101,10 @@ img {
     border-radius: 5px;
 }
 
+.modal-container input {
+    width: 100%;
+}
+
 .modal-add-server-container {
     width: 100%;
     margin: 20px auto;

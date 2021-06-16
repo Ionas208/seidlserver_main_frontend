@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import validate from '../utils/validate'
 import '../styles/Settings.css'
 import { useState } from 'react';
+import axios from 'axios'
 
 function Settings({ open, setOpen }) {
 
@@ -13,15 +14,39 @@ function Settings({ open, setOpen }) {
     const [newPassword2, setNewPassword2] = useState('')
     const [passwordPassword, setPasswordPassword] = useState('')
 
+    const api = axios.create({
+        baseURL: process.env.REACT_APP_BASE_URL
+    });
 
     const handleChangeUsername = (e) => {
         e.preventDefault()
-        alert('lmbo')
+        alert('user: ' + newUsernameInput)
+        alert('passw: ' + passwordUsername)
+        api.post('/auth/change/email?password=' + passwordUsername + 'jonas&email=' + newUsernameInput)
+        .then(res => {
+           alert('successful')
+       }).catch((err) => {
+               console.error(err)
+           alert("change failed")
+       })
     }
 
     const handleChangePassword = (e) => {
         e.preventDefault()
-        alert('lmbo2')
+        if(newPassword1 === newPassword2) {
+            api.post('/auth/change/password', {
+                "newPassword": newPassword1,
+                "password": passwordUsername
+            }).then(res => {
+               alert('successful')
+           }).catch((err) => {
+               console.error(err)
+               alert("change failed")
+           })
+        }
+        else {
+            alert('passwords don\'t match')
+        }
     }
 
 
@@ -55,7 +80,7 @@ function Settings({ open, setOpen }) {
                         <input type="password" onChange={e => setPasswordPassword(e.target.value)} />
                         <button className="bt-standard" onClick={handleChangePassword}>Change</button>
                 </form>
-                <button onClick={logout} className="bt-standard" style={{ marginBottom: '5%' }} ><Link to="/login">logout</Link></button>
+                {/* <button onClick={logout} className="bt-standard" style={{ marginBottom: '5%' }} ><Link to="/login">logout</Link></button> */}
             </div>
         </Layout>
     )

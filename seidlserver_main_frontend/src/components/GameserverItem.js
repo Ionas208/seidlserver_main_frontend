@@ -124,6 +124,7 @@ function GameserverItem({ item, getServerList }) {
         api.post('/gameserver/share?serverid='+item.id+'&email='+emailInput,).then(res => {
             setOpen(false)
             setEmailInput('')
+            alert('successful')
         }).catch((err) => {
             console.error(err)
             if(err.response.status === 400){
@@ -179,7 +180,7 @@ function GameserverItem({ item, getServerList }) {
                         <form onSubmit={handleSubmit}>
                             <p className="form-header">Email</p>
                             <input type="text" value={emailInput} onChange={e => setEmailInput(e.target.value)} /><br></br>
-                            <button className="bt-standard" style={{ marginLeft: 'auto' }} onClick={handleSubmit}>Share</button>
+                            <button className="bt-standard"  onClick={handleSubmit}>Share</button>
                         </form>
                     </div>
                 </Fade>
