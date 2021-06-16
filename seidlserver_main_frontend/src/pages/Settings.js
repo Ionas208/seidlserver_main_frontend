@@ -15,14 +15,15 @@ function Settings({ open, setOpen }) {
     const [passwordPassword, setPasswordPassword] = useState('')
 
     const api = axios.create({
-        baseURL: process.env.REACT_APP_BASE_URL
+        baseURL: process.env.REACT_APP_BASE_URL,
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 
     const handleChangeUsername = (e) => {
         e.preventDefault()
-        alert('user: ' + newUsernameInput)
-        alert('passw: ' + passwordUsername)
-        api.post('/auth/change/email?password=' + passwordUsername + 'jonas&email=' + newUsernameInput)
+        api.post('/auth/change/email?password=' + passwordUsername + '&email=' + newUsernameInput)
         .then(res => {
            alert('successful')
        }).catch((err) => {
@@ -34,10 +35,8 @@ function Settings({ open, setOpen }) {
     const handleChangePassword = (e) => {
         e.preventDefault()
         if(newPassword1 === newPassword2) {
-            api.post('/auth/change/password', {
-                "newPassword": newPassword1,
-                "password": passwordUsername
-            }).then(res => {
+            api.post('/auth/change/password?newPassword=' + newPassword1 + '&oldPassword=' + passwordPassword)
+            .then(res => {
                alert('successful')
            }).catch((err) => {
                console.error(err)

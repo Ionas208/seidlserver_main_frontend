@@ -79,8 +79,7 @@ function StateOperator() {
     }
 
     useEffect(() => {
-        refreshState();
-        refreshState();
+        setTimeout(100)
         refreshState();
     }, [])
 
