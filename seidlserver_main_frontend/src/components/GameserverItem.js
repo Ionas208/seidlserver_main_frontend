@@ -126,7 +126,7 @@ function GameserverItem({ item, getServerList }) {
             setEmailInput('')
         }).catch((err) => {
             console.error(err)
-            if(err.response.status == 400){
+            if(err.response.status === 400){
                 alert('Server is already shared with the user.')
             }else{
                 alert('Sharing was not successful.')

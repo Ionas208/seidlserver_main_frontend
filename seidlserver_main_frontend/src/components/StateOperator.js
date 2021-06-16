@@ -31,7 +31,7 @@ function StateOperator() {
     const power = () => {
         if (upState === 'DOWN') {
             setUpstate('STARTING')
-            var timeout = setTimeout(() =>{
+            const timeout = setTimeout(() =>{
                 setUpstate('')
                 refreshState()
             }, 35000)
