@@ -19,7 +19,7 @@ function StateOperator() {
     const refreshState = () => {
         api.get('/server/state').then(res => {
             console.log("refreshing...")
-            if(!(upState==='STARTING') && !(upState==='STOPPING') && !(upState==='RESTARTING')){
+            if (!(upState === 'STARTING') && !(upState === 'STOPPING') && !(upState === 'RESTARTING')) {
                 setUpstate(res.data);
             }
         }).catch((err) => {
@@ -31,7 +31,7 @@ function StateOperator() {
     const power = () => {
         if (upState === 'DOWN') {
             setUpstate('STARTING')
-            const timeout = setTimeout(() =>{
+            const timeout = setTimeout(() => {
                 setUpstate('')
                 refreshState()
             }, 35000)
@@ -44,9 +44,9 @@ function StateOperator() {
                 console.log(err)
             })
         }
-        else if (upState === 'UP'){
+        else if (upState === 'UP') {
             setUpstate('STOPPING')
-            var timeout = setTimeout(() =>{
+            var timeout = setTimeout(() => {
                 setUpstate('')
                 refreshState()
             }, 10000)
@@ -64,7 +64,7 @@ function StateOperator() {
     const restart = () => {
         if (upState === 'UP') {
             setUpstate('RESTARTING')
-            var timeout = setTimeout(() =>{
+            var timeout = setTimeout(() => {
                 setUpstate('')
                 refreshState()
             }, 30000)
@@ -79,11 +79,10 @@ function StateOperator() {
     }
 
     useEffect(() => {
-        setTimeout(100)
-        refreshState();
+        setTimeout(() => refreshState(), 1000)
     }, [])
 
-    useInterval(()=>{
+    useInterval(() => {
         refreshState();
     }, 5000)
 

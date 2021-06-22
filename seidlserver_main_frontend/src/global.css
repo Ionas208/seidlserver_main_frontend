@@ -96,3 +96,8 @@
 .hidden {
   display: none; 
 }
+
+.logo {
+  height: 75px;
+  width: fit-content;
+}

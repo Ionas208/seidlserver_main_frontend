@@ -3,6 +3,8 @@
     width: 100%;
     background-color: var(--bg-color);
     color: #ffffff;
+    display: flex;
+    justify-content: center;
 }
 
 .topbar h1 {

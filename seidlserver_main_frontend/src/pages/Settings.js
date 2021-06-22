@@ -25,7 +25,8 @@ function Settings({ open, setOpen }) {
         e.preventDefault()
         api.post('/auth/change/email?password=' + passwordUsername + '&email=' + newUsernameInput)
         .then(res => {
-           alert('successful')
+           localStorage.removeItem('jwt')
+           window.location.reload();
        }).catch((err) => {
                console.error(err)
            alert("change failed")
@@ -37,7 +38,8 @@ function Settings({ open, setOpen }) {
         if(newPassword1 === newPassword2) {
             api.post('/auth/change/password?newPassword=' + newPassword1 + '&oldPassword=' + passwordPassword)
             .then(res => {
-               alert('successful')
+               localStorage.removeItem('jwt')
+               window.location.reload();
            }).catch((err) => {
                console.error(err)
                alert("change failed")
