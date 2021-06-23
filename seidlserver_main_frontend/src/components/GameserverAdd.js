@@ -49,7 +49,6 @@ function GameserverAdd({ getServerList }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        alert(servertypeInput)
         api.post('/gameserver/add', {
             "linuxuser": scriptInput,
             "servername": servernameInput,
