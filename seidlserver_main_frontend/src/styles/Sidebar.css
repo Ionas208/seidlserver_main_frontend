@@ -3,8 +3,10 @@
   background-color: var(--bg-color);
   color: white;
   margin: 0;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar-open {
@@ -38,13 +40,18 @@
 
 .container-sidebar-items {
     height: max-content;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 90vh;
+    /* height: 90%; */
+    flex-grow: 1;
 }
 
 .sidebar-menu {
   flex-grow: 1;
+} 
+
+.sidebar-x {
+  height: 75px;;
 }

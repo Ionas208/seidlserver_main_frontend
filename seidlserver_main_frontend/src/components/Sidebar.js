@@ -10,7 +10,9 @@ function Sidebar({ open, setOpen }) {
 
   return (
     <div className={`sidebar noselect ${open ? 'sidebar-open' : 'sidebar-closed'}`}>
-      <button onClick={() => setOpen(!open)} className="bt-icon"><FontAwesomeIcon icon={open ? faTimes : faBars} /></button>
+      <div className="sidebar-x">
+        <button onClick={() => setOpen(!open)} className="bt-icon"><FontAwesomeIcon icon={open ? faTimes : faBars} /></button>
+      </div>
       <div className="container-sidebar-items">
         {/* <SidebarItem icon={faColumns} text="Overview" open={open} link={'/overview'}/> */}
         <div className="sidebar-menu">
@@ -18,9 +20,7 @@ function Sidebar({ open, setOpen }) {
           <SidebarItem icon={faChartPie} text="Statistics" open={open} link={'/statistics'} />
           <SidebarItem icon={faCog} text="Settings" open={open} link={'/settings'} />
         </div>
-        <div>
-          <SidebarItem icon={faSignOutAlt} text="Logout" open={open} link={'/help'}/>
-        </div>
+        <SidebarItem icon={faSignOutAlt} text="Logout" open={open} link={'/help'} />
       </div>
     </div>
   );
