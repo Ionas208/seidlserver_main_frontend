@@ -11,7 +11,7 @@ function GameserverAdd({ getServerList }) {
 
     const [scriptInput, setScriptInput] = useState('')
     const [servernameInput, setServernameInput] = useState('')
-    const [servertypeInput, setServertypeInput] = useState('')
+    const [servertypeInput, setServertypeInput] = useState('Minecraft')
 
 
     const api = axios.create({
@@ -24,7 +24,7 @@ function GameserverAdd({ getServerList }) {
     const getTypes = () => {
         api.get('/gameserver/types').then(res => {
             setServerTypes(res.data)
-            // console.log(serverTypes)
+            setServertypeInput(serverTypes[0].name)
         }).catch(err => {
             console.log(err)
         })
