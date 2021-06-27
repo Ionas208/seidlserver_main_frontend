@@ -58,7 +58,7 @@ function Settings({ open, setOpen }) {
     return (
         <Layout servername="SEIDLSERVER" open={open} setOpen={setOpen}>
             <h1 className="stat-h1">Settings</h1>
-            <div className="settings-container">
+            <div className="settings-container noselect">
                 <form onSubmit={handleChangeUsername} className="settings-section">
                         <h2>Change Username</h2>
                         <p>New Username</p>
