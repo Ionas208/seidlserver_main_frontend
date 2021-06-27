@@ -49,17 +49,22 @@ function GameserverAdd({ getServerList }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        api.post('/gameserver/add', {
-            "linuxuser": scriptInput,
-            "servername": servernameInput,
-            "type": servertypeInput
-        }).then(res => {
-            getServerList()
-            setOpen(false)
-        }).catch((err) => {
-            console.error(err)
-            alert('linuxuser already exists')
-        })
+        if (servernameInput.length > 16 || scriptInput.length > 16) {
+            alert('servername and scriptname must have a maximum of 16 characters')
+        }
+        else {
+            api.post('/gameserver/add', {
+                "linuxuser": scriptInput,
+                "servername": servernameInput,
+                "type": servertypeInput
+            }).then(res => {
+                getServerList()
+                setOpen(false)
+            }).catch((err) => {
+                console.error(err)
+                alert('linuxuser already exists')
+            })
+        }
     }
 
     console.log(serverTypes)
