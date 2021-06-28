@@ -88,7 +88,7 @@ function StateOperator() {
 
     return (
         <>
-            <div className="status-container">
+            <div className="status-container noselect">
                 <div className="status-status-container">
                     <h1>Status:{'\u00A0'}</h1><div className={`${upState === '' ? "loader" : ""}`}></div><h1>{upState}</h1>
                 </div>

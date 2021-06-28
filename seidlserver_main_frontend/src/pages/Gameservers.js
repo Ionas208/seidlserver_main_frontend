@@ -13,7 +13,7 @@ function Gameservers({open, setOpen}) {
 
     return (
         <Layout servername="SEIDLSERVER" open={open} setOpen={setOpen} >
-            <h1 className="stat-h1">Gameservers</h1>
+            <h1 className="stat-h1 noselect">Gameservers</h1>
             <StateOperator />
             <GameserverList />
         </Layout>
